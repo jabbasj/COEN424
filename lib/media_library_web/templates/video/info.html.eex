@@ -1,0 +1,9 @@
+<h2>File Info</h2>
+
+  <p><b>Title:</b> <%= @video.title %></p>
+  <p><b>Filename:</b> <%= @video.filename %></p>
+  <p><b>Content-Type:</b> <%= @video.content_type %></p>
+  <p><b>Path:</b> <%= @video.path %></p>
+  <p><b>Origin:</b> <%= @video.origin %></p>
+
+<%= link "Back", to: video_path(@conn, :index), style: "margin-top: 10px" %>

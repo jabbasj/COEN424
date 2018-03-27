@@ -1,0 +1,18 @@
+<div class="col-md-6 col-md-offset-3">
+  <h2><b>Sign in</b></h2>
+  <h6>or <%= link "create an account", to: user_path(@conn, :new) %></h6>
+
+  <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
+    <div class="form-group">
+      <%= email_input f, :email, placeholder: "E-mail", required: true,  class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= password_input f, :password, placeholder: "Password", required: true,  class: "form-control" %>
+    </div>
+    <%= submit "Sign in", class: "btn btn-primary btn-block" %>
+
+    <%= link to: oauth_path(@conn, :new, "google"), class: "btn btn-block btn-social btn-google" do %>
+      <span class="fa fa-google"></span> Sign in with Google
+    <% end%>
+  <% end %>
+</div>

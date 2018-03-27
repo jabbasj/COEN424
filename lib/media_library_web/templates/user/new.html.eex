@@ -1,0 +1,28 @@
+<div class="col-md-6 col-md-offset-3">
+  <h2><b>Register</b></h2>
+  <h6>or <%= link "sign in to your account", to: session_path(@conn, :new) %></h6>
+
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p> Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= form_for @changeset, user_path(@conn, :create), fn f-> %>
+    <div class="form-group">
+      <%= email_input f, :email, placeholder: "E-mail", required: true,  class: "form-control" %>
+      <%= error_tag f, :email %>
+    </div>
+    <div class="form-group">
+      <%= text_input f, :name, placeholder: "Full Name", required: true,  class: "form-control" %>
+      <%= error_tag f, :username %>
+    </div>
+    <div class="form-group">
+      <%= password_input f, :password, placeholder: "Password", required: true,  class: "form-control" %>
+      <%= error_tag f, :password %>
+    </div>
+    <div class="form-group">
+      <%= submit "Register", class: "btn btn-primary btn-block"%>
+    </div>
+  <% end %>
+</div>

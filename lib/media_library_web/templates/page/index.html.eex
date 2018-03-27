@@ -1,0 +1,13 @@
+<div class="jumbotron">
+    <h2><b>Welcome to Personal Media Library!</b></h2>
+
+    <p>Personal Media Library is a web application that allows you to create your own personal online media library
+    and access it from any device</p>
+
+    <%= if @current_user do %>
+      <%= link "Manage videos", to: video_path(@conn, :index), class: "btn btn-primary btn-lg" %>
+    <% else %>
+      <%= link "Log in", to: session_path(@conn, :new), class: "btn btn-primary btn-lg btn-block" %>
+      <%= link "Register", to: user_path(@conn, :new), class: "btn  btn-default btn-lg btn-block"  %>
+    <% end %>
+</div>

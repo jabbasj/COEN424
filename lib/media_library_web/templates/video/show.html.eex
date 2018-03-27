@@ -1,0 +1,14 @@
+<h2>Watch Video</h2>
+
+<video id="my-video" class="video-js vjs-big-play-centered" controls preload="none" wwidth="640" height="264" data-setup='{"fluid": true}'>
+  <source src="<%= @video_url %>" type='<%= @video.content_type %>'>
+
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a web browser that
+    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+  </p>
+</video>
+
+<h4 style="margin-top: 10px"><b>Title: </b><%= @video.title %></h4>
+
+<%= link "Back", to: video_path(@conn, :index), style: "margin-top: 10px" %>

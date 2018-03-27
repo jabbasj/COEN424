@@ -1,0 +1,14 @@
+<div>
+  <h2><b>Settings</b></h2>
+  <%= if @drive_associated do %>
+    <div class="jumbotron">
+      <p>Your drive account is associated</p>
+      <%= link "Sync Files", to: user_path(@conn, :sync_library, "drive"), class: "btn btn-primary" %>
+    </div>
+  <% else %>
+    <div class="jumbotron">
+      <p>You do not have any associated accounts</p>
+      <%= link "Associate Drive", to: oauth_path(@conn, :new, "drive"), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

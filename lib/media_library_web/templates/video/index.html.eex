@@ -1,0 +1,43 @@
+<h2>Listing Videos</h2>
+<span><%= link "Upload Video", to: video_path(@conn, :new) %></span>
+</br>
+
+<div class="container-fluid" style="margin-top: 30px">
+  <div class="row">
+    <%= for video <- @videos do %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail adaptive-thumbnail">
+          <%= img_tag(get_thumbnail_url(video, @user), alt: "Video Thumbnail", style: "max-height: 165px") %>
+          <div class="caption">
+            <p class="max-lines"><b><%= video.title %></b></p>
+
+            <%= if video.is_adaptive do %>
+              <%= link "Watch", to: video_path(@conn, :show, video), class: "btn btn-success bottom-left-aligned" %>
+            <% else %>
+              <%= link "Watch", to: video_path(@conn, :show, video), class: "btn btn-primary bottom-left-aligned" %>
+            <% end %>
+
+            <div class="dropdown bottom-right-aligned">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Actions 
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <%= if video.is_adaptive || video.is_transcoding do %>
+                  <li class="disabled"><a href="#" style="color: green"><span class="glyphicon glyphicon-ok"></span> Video Transcoded</a></li>
+                <% else %>
+                  <li><%= link "Transcode", to: video_path(@conn, :transcode, video) %></li>
+                <% end %>
+                <li><%= link "Edit", to: video_path(@conn, :edit, video) %></li>
+                <li><%= link "Delete", to: video_path(@conn, :delete, video), method: :delete, data: [confirm: "Are you sure?"]%><li>
+                <li class="dropdown-header">Debugging</li>
+                <li><%= link "View File Info", to: video_path(@conn, :info, video) %></li>
+              </ul>
+            </div>
+    
+      </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
